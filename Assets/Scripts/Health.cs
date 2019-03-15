@@ -19,6 +19,11 @@ public class Health : Energy
         current = max;
     }
 
+    void Start()
+    {
+        current = max;
+    }
+
     public override int max
     {
         get

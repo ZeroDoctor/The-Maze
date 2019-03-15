@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
 
 public static class Utils
 {
@@ -30,32 +31,9 @@ public static class Utils
     {
         if (Input.mousePresent)
             return Utils.GetAxisRawScrollUniversal();
-        else if (Input.touchSupported)
-            return GetPinch();
         return 0;
     }
 
-    public static float GetPinch()
-    {
-        if (Input.touchCount == 2)
-        {
-            // Store both touches.
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-
-            // Find the position in the previous frame of each touch.
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-            // Find the magnitude of the vector (the distance) between the touches in each frame.
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            // Find the difference in the distances between each frame.
-            return touchDeltaMag - prevTouchDeltaMag;
-        }
-        return 0;
-    }
 
     public static float GetAxisRawScrollUniversal()
     {
@@ -75,4 +53,34 @@ public static class Utils
             return hash;
         }
     }
+
+    public static float ClosestDistance(Collider a, Collider b)
+    {
+        if (a.bounds.Intersects(b.bounds))
+            return 0;
+
+        return Vector3.Distance(a.ClosestPoint(b.transform.position), b.ClosestPoint(a.transform.position));
+    }
+
+    public static bool RaycastWithout(Vector3 origin, Vector3 direction, out RaycastHit hit, float maxDistance, GameObject ignore, int layerMask = Physics.DefaultRaycastLayers)
+    {
+        // remember layers
+        Dictionary<Transform, int> backups = new Dictionary<Transform, int>();
+
+        // set all to ignore raycast
+        foreach (Transform tf in ignore.GetComponentsInChildren<Transform>(true))
+        {
+            backups[tf] = tf.gameObject.layer;
+            tf.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+
+        bool result = Physics.Raycast(origin, direction, out hit, maxDistance, layerMask);
+
+        // restore layers
+        foreach (KeyValuePair<Transform, int> kvp in backups)
+            kvp.Key.gameObject.layer = kvp.Value;
+
+        return result;
+    }
+
 }

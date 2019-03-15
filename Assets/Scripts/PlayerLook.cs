@@ -44,6 +44,30 @@ public class PlayerLook : MonoBehaviour
 
     public float crouchOriginMultiplier = 0.65f;
 
+    public Vector3 lookPositionFar
+    {
+        get
+        {
+            // if is the local player then headPosition instead
+            Vector3 position = camera.transform.position;
+            return position + camera.transform.forward * 9999f; // this might be really wrong
+        }
+    }
+
+    public Vector3 lookPositionRaycasted
+    {
+        get
+        {
+            RaycastHit hit;
+            //if (isLocalPlayer) might need this
+            return Utils.RaycastWithout(camera.transform.position, camera.transform.forward, out hit, Mathf.Infinity, gameObject)
+                   ? hit.point
+                   : lookPositionFar;
+            //else
+            //return Vector3.zero;
+        }
+    }
+
     void Awake()
     {
         camera = Camera.main;
