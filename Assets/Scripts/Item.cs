@@ -32,6 +32,8 @@ public struct Item
         }
     }
 
+    public int maxStack { get { return data.maxStack; } }
+
     //public Sprite sprite {get {return }};
     public Sprite sprite { get { return data.sprite; } }
 

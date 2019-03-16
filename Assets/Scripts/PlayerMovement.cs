@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public float gravityMultiplier = 2;
     bool previouslyGrounded;
 
+    [HideInInspector]
+    public int soundCreated;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -32,7 +32,10 @@ public abstract class Mob : FSM
     {
         speed = walkSpeed;
         startPosition = transform.position;
+        NavMeshAgentInit(startPosition);
     }
+
+    protected virtual void NavMeshAgentInit(Vector3 startPosition) { }
 
     // events during a state ////////////////////////////////////////
     protected bool EventTargetDisappeared()
@@ -89,6 +92,7 @@ public abstract class Mob : FSM
         }
         if (EventTargetTooFarToFollow())
         {
+            target = null;
             return Moving(walkSpeed, 0, startPosition);
         }
         if (EventTargetTooFarToInteract())
@@ -116,6 +120,7 @@ public abstract class Mob : FSM
         {
             target = null;
             Moving(walkSpeed, 0, startPosition);
+            ResetMovement();
             return "IDLE";
         }
         if (EventTargetTooFarToFollow())
@@ -130,15 +135,14 @@ public abstract class Mob : FSM
         if (EventTargetUnreachable()) { } // not sure if this will ever happend
         if (EventAggro())
         {
-            ContinuousAttacking();
-            return "INTERACTING";
+            return ContinuousAttacking();
         }
 
-        return "INTERACTING";
+        return "MOVING";
     }
 
     // merchant mob would have this function empty
-    protected abstract bool ContinuousAttacking();
+    protected abstract string ContinuousAttacking();
 
     // some mobs sell to the player while other mobs attack the player
     protected abstract string UpdateServer_Interacting();
@@ -177,13 +181,10 @@ public abstract class Mob : FSM
         transform.LookAt(new Vector3(position.x, transform.position.y, position.z));
     }
 
-    protected bool IsMoving()
-    {
-        return destination != startPosition || velocity != Vector3.zero;
-    }
+    protected abstract bool IsMoving();
 
-    // main boss will override this
-    protected void ResetMovement() { }
+    // mag-aani will override this
+    protected virtual void ResetMovement() { }
 
     // merchant would stop and play the bells instead of moving towards the player
     protected abstract string Moving(float speed, float stoppingDistance, Vector3 destination);

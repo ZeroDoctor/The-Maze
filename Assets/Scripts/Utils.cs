@@ -83,4 +83,27 @@ public static class Utils
         return result;
     }
 
+    // Same as RaycastWithout but with a Sphere
+    public static bool SphereCastWithout(Vector3 origin, float sphereRadius, Vector3 direction, out RaycastHit hit, float maxDistance, GameObject ignore, int layerMask = Physics.DefaultRaycastLayers)
+    {
+        // remember layers
+        Dictionary<Transform, int> backups = new Dictionary<Transform, int>();
+
+        // set all to ignore raycast
+        foreach (Transform tf in ignore.GetComponentsInChildren<Transform>(true))
+        {
+            backups[tf] = tf.gameObject.layer;
+            tf.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+
+        bool result = Physics.SphereCast(origin, sphereRadius, direction, out hit, maxDistance, layerMask);
+
+        // restore layers
+        foreach (KeyValuePair<Transform, int> kvp in backups)
+            kvp.Key.gameObject.layer = kvp.Value;
+
+        return result;
+    }
+
+
 }
