@@ -4,6 +4,12 @@ using UnityEngine;
 public class Minion : Mob
 {
 
+
+    protected override string SpecialIdle()
+    {
+        return "IDLE";
+    }
+
     protected override bool IsMoving()
     {
         Debug.Log(destination != startPosition);
@@ -18,6 +24,11 @@ public class Minion : Mob
     protected override bool EventAggro()
     {
         return target != null && target.GetComponent<Health>().current > 0;
+    }
+
+    protected override bool EventSpecialIdle()
+    {
+        return false;
     }
 
     protected override string ContinuousAttacking()

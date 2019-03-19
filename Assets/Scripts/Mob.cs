@@ -11,7 +11,9 @@ public abstract class Mob : FSM
     public float runSpeed = 5;
     protected float speed;
 
-    [Range(0, 1)] public float moveProbability = 0.1f;
+    [Range(0, 1)] public float moveProbability = 0.1f; // for random patrols
+    [Range(0, 1)] public float specialProbability = 0.1f; // for roaring, dancing, etc.
+    [Range(0, 1)] public float attackProbability = 0.1f; // for different types of attacks
     public float moveDistance = 10;
 
     public float followDistance = 0f;
@@ -21,12 +23,19 @@ public abstract class Mob : FSM
     [Header("Interact")]
     public float interactRange = 0f;
 
+    public float specialInterval = 1f;
+    protected double specialEndTime;
+
     public float attackInterval = 0.5f;
     protected double attackEndTime;
     protected Vector3 startPosition;
     protected Vector3 destination;
     protected Vector3 velocity;
     protected float stoppingDistance;
+
+    [HideInInspector]
+    public string action = "NOTHING";
+    protected bool doneAttacking = true;
 
     void Awake()
     {
@@ -81,6 +90,8 @@ public abstract class Mob : FSM
         return state == "MOVING" && !IsMoving();
     }
 
+    protected abstract bool EventSpecialIdle(); // for special idle moves like roar or dance
+
     // ServerUpdates ////////////////////////////////////////////////////////////
 
     private string UpdateServer_Idle()
@@ -105,6 +116,10 @@ public abstract class Mob : FSM
             attackEndTime = Time.time + attackInterval; // Server time needed?
             // RpcOnInteractStarted(); if we want to play a sound
             return "INTERACTING";
+        }
+        if (EventSpecialIdle())
+        {
+            return SpecialIdle();
         }
 
         return "IDLE";
@@ -182,6 +197,8 @@ public abstract class Mob : FSM
     }
 
     protected abstract bool IsMoving();
+
+    protected abstract string SpecialIdle();
 
     // mag-aani will override this
     protected virtual void ResetMovement() { }

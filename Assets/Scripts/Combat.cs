@@ -10,7 +10,7 @@ public interface ICombatBonus
     int GetDefenseBonus();
 }
 
-public class UnityEventGameObjectInt : UnityEvent<GameObject, int> { }
+[Serializable] public class UnityEventGameObjectInt : UnityEvent<GameObject, int> { }
 
 public class Combat : MonoBehaviour
 {

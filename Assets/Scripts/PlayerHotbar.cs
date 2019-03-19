@@ -111,6 +111,11 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
         // Animation can be done here since we have the animator
     }
 
+    public void OnDamageReceived(GameObject attacker, int damageDealt)
+    {
+        combat.baseDefense -= damageDealt / 2;
+    }
+
     void Update()
     {
         // localplayer selected item usage

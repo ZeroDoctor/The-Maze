@@ -3,8 +3,20 @@ using UnityEngine.AI;
 
 public class Magaani : Mob
 {
-
     public NavMeshAgent agent;
+
+    protected override string SpecialIdle()
+    {
+        action = "ROAR";
+
+        specialEndTime = specialInterval + Time.time;
+        return "IDLE";
+    }
+
+    private bool AttackBiteMethod()
+    {
+        return Random.value >= attackProbability;
+    }
 
     protected override bool IsMoving()
     {
@@ -20,6 +32,12 @@ public class Magaani : Mob
     protected override bool EventAggro()
     {
         return target != null && target.GetComponent<Health>().current > 0;
+    }
+
+    protected override bool EventSpecialIdle()
+    {
+        if (specialEndTime <= Time.time) { action = "NOTHING"; }
+        return Random.value <= specialProbability * Time.deltaTime;
     }
 
     protected override string ContinuousAttacking()
@@ -47,7 +65,6 @@ public class Magaani : Mob
 
         if (EventTargetDisappeared())
         {
-
             target = null;
             return "IDLE";
         }
@@ -67,6 +84,18 @@ public class Magaani : Mob
             if (target.GetComponent<Health>().current == 0)
                 target = null;
 
+            doneAttacking = true;
+            action = "NOTHING";
+            if (doneAttacking && AttackBiteMethod())
+            {
+                doneAttacking = false;
+                action = "BITE";
+            }
+            else
+            {
+                action = "CLAW";
+            }
+
             // go back to IDLE
             return "IDLE";
         }
@@ -81,6 +110,11 @@ public class Magaani : Mob
             return "IDLE";
         }
 
+        if ((action != "BITE" || action != "CLAW") && doneAttacking)
+        {
+            action = "CLAW";
+        }
+
         return "INTERACTING";
     }
 
@@ -92,9 +126,6 @@ public class Magaani : Mob
 
     protected override string Moving(float speed, float stoppingDistance, Vector3 goalDestination)
     {
-
-        Debug.Log("trying to move");
-
         agent.speed = speed;
         agent.stoppingDistance = stoppingDistance;
         agent.destination = goalDestination;

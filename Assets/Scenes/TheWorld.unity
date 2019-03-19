@@ -458,6 +458,12 @@ Transform:
   m_Father: {fileID: 1988969986}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &486563710 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7247819075386143573, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+    type: 3}
+  m_PrefabInstance: {fileID: 722331522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +688,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7247819075386143573, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: afaf097b43021ff40b47681a625a7e27, type: 2}
     - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
         type: 3}
       propertyPath: followDistance
@@ -690,7 +701,7 @@ PrefabInstance:
     - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
         type: 3}
       propertyPath: interactRange
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
         type: 3}
@@ -701,6 +712,26 @@ PrefabInstance:
         type: 3}
       propertyPath: runSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: specialProbability
+      value: 0.149
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: attackInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: attackProbability
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258632272073982108, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: specialInterval
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3170955303051947523, guid: cc59599d4e503ca4aa85ce9644dbf14c,
         type: 3}
@@ -717,6 +748,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1740928437056666185, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: baseDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187135408785677301, guid: cc59599d4e503ca4aa85ce9644dbf14c,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 486563710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc59599d4e503ca4aa85ce9644dbf14c, type: 3}
 --- !u!1 &763145663
@@ -1768,9 +1809,11 @@ GameObject:
   - component: {fileID: 1650775271}
   - component: {fileID: 1650775270}
   - component: {fileID: 1650775269}
-  - component: {fileID: 1650775276}
   - component: {fileID: 1650775275}
   - component: {fileID: 1650775274}
+  - component: {fileID: 1650775279}
+  - component: {fileID: 1650775276}
+  - component: {fileID: 1650775280}
   - component: {fileID: 1650775277}
   - component: {fileID: 1650775278}
   m_Layer: 0
@@ -1885,7 +1928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 1650775275}
   capsule: {fileID: 1650775270}
-  health: {fileID: 1650775276}
+  health: {fileID: 1650775277}
   sensX: 2
   sensY: 2
   clampVerticalRotation: 1
@@ -1919,7 +1962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capsule: {fileID: 1650775270}
-  health: {fileID: 1650775276}
+  health: {fileID: 1650775277}
   controller: {fileID: 1650775269}
   state: 0
   moveDir: {x: 0, y: 0, z: 0}
@@ -1940,11 +1983,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1650775268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b97ca568be42f449c362af115cbc6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c2c96b5f12a4374ca30094f65fd4ebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoveryTickRate: 1
-  baseHealth: 100
+  animator: {fileID: 1650775280}
+  health: {fileID: 1650775277}
+  combat: {fileID: 1650775279}
+  movement: {fileID: 1650775275}
+  look: {fileID: 1650775274}
+  size: 4
+  defaultItems: []
+  keys: 31000000320000003300000034000000
+  selection: 0
+  usageEndTime: 0
+  hands: {fileID: 0}
 --- !u!114 &1650775277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,6 +2025,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recoveryTickRate: 1
   baseMana: 100
+--- !u!114 &1650775279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650775268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0e728393e509a4ba3229c557033fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 0
+  baseDefense: 0
+  onDamageEffect: {fileID: 0}
+  onReceivedDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1650775276}
+        m_MethodName: OnDamageReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEventGameObjectInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!95 &1650775280
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650775268}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1825956132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2113,11 @@ MonoBehaviour:
   baseDamage: 5
   baseDefense: 1
   onDamageEffect: {fileID: 0}
+  onReceivedDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventGameObjectInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &1825956134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,11 +2151,15 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 3
   moveProbability: 0.1
+  specialProbability: 0.1
+  attackProbability: 0.1
   moveDistance: 10
   followDistance: 10
   attackToMoveRangeRatio: 0.5
   interactRange: 2
+  specialInterval: 1
   attackInterval: 0.5
+  action: NOTHING
 --- !u!135 &1825956136
 SphereCollider:
   m_ObjectHideFlags: 0
