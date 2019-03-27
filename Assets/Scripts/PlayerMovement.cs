@@ -41,11 +41,23 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public int soundCreated;
+    public float verticalDir;
+    public float horizontalDir;
 
     // Start is called before the first frame update
     void Start()
     {
         health.current = 100;
+    }
+
+    public bool isMoving()
+    {
+        if (state == State.RUNNING || state == State.WALKING)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -121,6 +133,10 @@ public class PlayerMovement : MonoBehaviour
 
     private State UpdateWALKINGandRUNNING(Vector2 inputDir, Vector3 desiredDir)
     {
+
+        verticalDir = inputDir.y;
+        horizontalDir = inputDir.x;
+
         // walk or run?
         float speed = GetWalkOrRunSpeed();
 

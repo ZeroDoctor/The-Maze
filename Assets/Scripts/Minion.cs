@@ -12,7 +12,6 @@ public class Minion : Mob
 
     protected override bool IsMoving()
     {
-        Debug.Log(destination != startPosition);
         return destination != startPosition;
     }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public enum Usability : byte { Usable, Cooldown, Empty, Never }
+public enum Usability : int { Usable, Cooldown, Empty, Never }
 
 public abstract class UsableItem : ScriptableItem
 {

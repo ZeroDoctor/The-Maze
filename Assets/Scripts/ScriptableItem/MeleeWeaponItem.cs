@@ -1,11 +1,10 @@
 using System.Text;
 using UnityEngine;
-
+[CreateAssetMenu(menuName = "Item/MeleeWeaponItem", order = 999)]
 public class MeleeWeaponItem : WeaponItem
 {
 
     public float sphereCastRadius = 0.5f;
-
     public override Usability CanUse(PlayerHotbar hotbar, int inventoryIndex, Vector3 lookAt)
     {
         return Time.time >= hotbar.usageEndTime &&

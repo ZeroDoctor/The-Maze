@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
+[Serializable]
 public struct Item
 {
 
@@ -17,6 +19,10 @@ public struct Item
     public Item(ScriptableItem data)
     {
         hash = data.name.GetStableHashCode();
+
+        if (!ScriptableItem.dict.ContainsKey(hash))
+            ScriptableItem.dict.Add(hash, data);
+
         ammo = 0;
         durability = data.maxDurability;
         NULL = 0;
@@ -31,6 +37,8 @@ public struct Item
             return ScriptableItem.dict[hash];
         }
     }
+
+    public string name { get { return data.name; } }
 
     public int maxStack { get { return data.maxStack; } }
 

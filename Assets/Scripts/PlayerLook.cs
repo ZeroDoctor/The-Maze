@@ -24,7 +24,7 @@ public class PlayerLook : MonoBehaviour
     [HideInInspector] public Quaternion cameraTargetRot;
 
     public Transform firstPersonParent;
-    public Vector3 headPosition { get { return firstPersonParent.position; } }
+    public Vector3 headPosition { get { return firstPersonParent.position + new Vector3(0, 0, 0.1f); } }
     private Vector3 originalCameraPosition;
 
     // the layer mask to use when trying to detect view blocking
@@ -132,15 +132,14 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-
         // only while alive
-        if (health.current > 0)
-        {
-            // set to player parent already?
-            if (camera.transform.parent != transform)
-                InitializeForcedLook();
-            LookRotation(transform);
-        }
+        //if (health.current > 0) // for now
+        //{
+        // set to player parent already?
+        if (camera.transform.parent != transform)
+            InitializeForcedLook();
+        LookRotation(transform);
+        //}
     }
 
     void LateUpdate()

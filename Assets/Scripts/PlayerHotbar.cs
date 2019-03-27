@@ -19,6 +19,7 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
     // number keys on top row
     public KeyCode[] keys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
 
+    [HideInInspector]
     public int selection = 0;
 
     [HideInInspector]
@@ -27,6 +28,24 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
     private double cooldownTimeEnd;
 
     public MeleeWeaponItem hands;
+    public Transform weaponMount;
+
+    void Start()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            if (i < defaultItems.Length)
+            {
+                slots.Add(new ItemSlot(new Item(defaultItems[i])));
+            }
+            else
+            {
+                slots.Add(new ItemSlot());
+            }
+
+        }
+
+    }
 
     public float CoolDownTimeRemaining()
     {
@@ -70,8 +89,15 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
         }
     }
 
-
     // Server //
+    public void CmdSelect(int index)
+    {
+        if (0 <= index && index < slots.Count)
+        {
+            selection = index;
+        }
+    }
+
     public void CmdUseItem(int index, Vector3 lookAt)
     {
         if (0 <= index && index < slots.Count && health.current > 0)
@@ -109,6 +135,14 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
         itemData.OnUsed(this, lookAt);
 
         // Animation can be done here since we have the animator
+        if (itemData is WeaponItem)
+        {
+            Debug.Log("Should be true");
+            WeaponItem weapon = (WeaponItem)itemData;
+            animator.SetBool(weapon.animationParameter, true);
+        }
+
+
     }
 
     public void OnDamageReceived(GameObject attacker, int damageDealt)
@@ -116,10 +150,63 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
         combat.baseDefense -= damageDealt / 2;
     }
 
+    private void ResetAnimation(UsableItem itemData, Vector3 lookAt)
+    {
+        if (itemData is WeaponItem)
+        {
+            WeaponItem weapon = (WeaponItem)itemData;
+
+            Usability usability = weapon.CanUse(this, selection, lookAt);
+
+            if (usability == Usability.Usable)
+            {
+                animator.SetBool(weapon.animationParameter, false);
+            }
+        }
+    }
+
+    public void RefreshLocation(Transform location, ItemSlot slot)
+    {
+        // valid item, not cleared?
+        if (slot.amount > 0)
+        {
+            ScriptableItem itemData = slot.item.data;
+            // new model? (don't do anything if it's the same model, which
+            // happens after only Item.ammo changed, etc.)
+            // note: we compare .name because the current object and prefab
+            // will never be equal
+            if (location.childCount == 0 || itemData.modelPrefab == null ||
+                location.GetChild(0).name != itemData.modelPrefab.name)
+            {
+                // delete old model (if any)
+                if (location.childCount > 0)
+                    Destroy(location.GetChild(0).gameObject);
+
+                // use new model (if any)
+                if (itemData.modelPrefab != null)
+                {
+                    // instantiate and parent
+                    GameObject go = Instantiate(itemData.modelPrefab);
+                    go.name = itemData.modelPrefab.name; // avoid "(Clone)"
+                    go.transform.SetParent(location, false);
+
+                }
+            }
+        }
+        else
+        {
+            // empty now. delete old model (if any)
+            if (location.childCount > 0)
+                Destroy(location.GetChild(0).gameObject);
+        }
+    }
+
     void Update()
     {
+        RefreshLocation(weaponMount, slots[selection]);
         // localplayer selected item usage
         //if (!isLocalPlayer) return;
+
         if (Input.GetMouseButton(0) &&
             Cursor.lockState == CursorLockMode.Locked &&
             health.current > 0 &&
@@ -129,6 +216,7 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
             // use current item or hands
             TryUseItem(GetUsableItemOrHands(selection));
         }
+        ResetAnimation(GetUsableItemOrHands(selection), look.lookPositionRaycasted);
     }
 
 
