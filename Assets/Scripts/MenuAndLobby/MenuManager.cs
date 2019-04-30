@@ -121,6 +121,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log("Player " + newPlayer.NickName + " connected");
         Player[] photonPlayers = PhotonNetwork.PlayerList;
         int index = Array.IndexOf<Player>(photonPlayers, newPlayer);
         ListPlayers(newPlayer, index);
@@ -128,7 +129,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public void ListPlayers(Player player, int i)
     {
-        Debug.Log("Player" + player.NickName + " connected");
+        Debug.Log("Player " + player.NickName + " connected");
 
         switch (i)
         {
