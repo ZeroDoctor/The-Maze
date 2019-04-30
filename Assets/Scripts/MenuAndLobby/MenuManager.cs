@@ -55,6 +55,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         lobby.gameObject.SetActive(PhotonNetwork.IsConnected && !TryConnect && !TryJoin);
     }
 
+    //When multiplaye is clicked, get nickname and connect to master
     public void OnClickConnectToMaster()
     {
         var nickname = nameInput.text;
@@ -74,6 +75,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    //When disconnected from master
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
@@ -82,6 +84,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         Debug.Log(cause);
     }
 
+    //When connected to master, auto join random room
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
@@ -91,6 +94,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
+    //when joined room, players names loaded
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
@@ -104,6 +108,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         }
     }
 
+    //When join random fails, call to create a room, then join the room
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         base.OnJoinRandomFailed(returnCode, message);
@@ -111,6 +116,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         Debug.Log("Join room failed, creating room.");
     }
 
+    //If room created failed, major error occurs that can be handled
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
@@ -118,6 +124,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         TryJoin = false;
     }
 
+    //New player joins room, loads name into ui
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
@@ -127,6 +134,20 @@ public class MenuManager : MonoBehaviourPunCallbacks
         ListPlayers(newPlayer, index);
     }
 
+    //Player leaves room, reloads players name into ui
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log("Player " + otherPlayer.NickName + " disconnected");
+        ResetNames();
+        Player[] photonPlayers = PhotonNetwork.PlayerList;
+        for (int i = 0; i < photonPlayers.Length; i++)
+        {
+            ListPlayers(photonPlayers[i], i);
+        }
+    }
+
+    //Calls UI to list player names
     public void ListPlayers(Player player, int i)
     {
         Debug.Log("Player " + player.NickName + " connected");
@@ -185,5 +206,27 @@ public class MenuManager : MonoBehaviourPunCallbacks
                 Debug.Log("Too full");
                 break;
         }
+    }
+
+    //Resets ui player names
+    public void ResetNames()
+    {
+        string reset = "Waiting";
+        names.playerName0.text = reset;
+        names.playerName1.text = reset;
+        names.playerName2.text = reset;
+        names.playerName3.text = reset;
+        names.playerName4.text = reset;
+        names.playerName5.text = reset;
+        names.playerName6.text = reset;
+        names.playerName7.text = reset;
+        names.playerName8.text = reset;
+        names.playerName9.text = reset;
+        names.playerName10.text = reset;
+        names.playerName11.text = reset;
+        names.playerName12.text = reset;
+        names.playerName13.text = reset;
+        names.playerName14.text = reset;
+        names.playerName15.text = reset;
     }
 }
