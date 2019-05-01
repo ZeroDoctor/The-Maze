@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public Canvas mainMenu;
     public Canvas lobby;
     public Button multiplayBtn;
+    public Button playBtn;
     public TMP_InputField nameInput;
 
     public bool TryConnect;
@@ -44,6 +45,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         TryConnect = false;
         TryJoin = false;
     }
@@ -73,6 +75,19 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
         TryConnect = true;
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    //On click, start game
+    public void OnClickPlay()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.CurrentRoom.IsVisible = false;
+        PhotonNetwork.LoadLevel(1);
     }
 
     //When disconnected from master
