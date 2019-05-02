@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     [Serializable]
     public class NameFields
     {
-        [Header("--TM Pro UGUI Texts")]
+        [Header("TM Pro UGUI Texts")]
         public TextMeshProUGUI playerName0;
         public TextMeshProUGUI playerName1;
         public TextMeshProUGUI playerName2;
@@ -53,8 +53,14 @@ public class MenuManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        mainMenu.gameObject.SetActive(!PhotonNetwork.IsConnected && !TryConnect);
-        lobby.gameObject.SetActive(PhotonNetwork.IsConnected && !TryConnect && !TryJoin);
+        if (mainMenu != null)
+        {
+            mainMenu.gameObject.SetActive(!PhotonNetwork.IsConnected && !TryConnect);
+        }
+        if (lobby != null)
+        {
+            lobby.gameObject.SetActive(PhotonNetwork.IsConnected && !TryConnect && !TryJoin);
+        }       
     }
 
     //When multiplaye is clicked, get nickname and connect to master
