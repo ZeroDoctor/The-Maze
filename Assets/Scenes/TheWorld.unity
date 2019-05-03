@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templarPrefab: {fileID: 8218607957468313087, guid: 98ac14b2e33cb964ba12aa5b6e323477,
     type: 3}
-  spawnPoint1: {fileID: 0}
-  spawnPoint2: {fileID: 0}
+  spawnPoint1: {fileID: 1926609300}
+  spawnPoint2: {fileID: 1104395317}
 --- !u!1 &940213920 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7247819074365800867, guid: cc59599d4e503ca4aa85ce9644dbf14c,
