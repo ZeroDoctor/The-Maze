@@ -1,5 +1,3 @@
-// Projectile skill effects like arrows, flaming fire balls, etc. that deal
-// damage on the target.
 using UnityEngine;
 
 // needs a rigidbody to detect OnTriggerEnter etc.
@@ -11,7 +9,7 @@ public class Projectile : MonoBehaviour
     new public Collider collider;
 
     public float speed = 1;
-    public float destroyAfter = 10; // don't let it fly forever. destroy if it hits nothing.
+    public float destroyAfter = 100; // don't let it fly forever. destroy if it hits nothing.
     [HideInInspector] public GameObject owner; // probably need to sync this
     [HideInInspector] public Vector3 direction; // probably need to sync this
     [HideInInspector] public int damage = 1;
@@ -23,6 +21,7 @@ public class Projectile : MonoBehaviour
         foreach (Collider co in owner.GetComponentsInChildren<Collider>())
             Physics.IgnoreCollision(collider, co);
 
+        //transform.rotation.eulerAngles.Set(0f, transform.rotation.eulerAngles.y, 0f);
 
         Invoke("DestroySelf", destroyAfter);
     }
@@ -30,8 +29,10 @@ public class Projectile : MonoBehaviour
     void FixedUpdate()
     {
         // move rigidbody and look at direction
+        //transform.Rotate(90f, 0f, 0f);
         rigidBody.MovePosition(Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.fixedDeltaTime));
-        transform.LookAt(transform.position + direction);
+        Vector3 localDirection = transform.position + direction;
+        transform.LookAt(new Vector3(transform.position.x, localDirection.y, localDirection.z));
     }
 
     void OnTriggerEnter(Collider co)
