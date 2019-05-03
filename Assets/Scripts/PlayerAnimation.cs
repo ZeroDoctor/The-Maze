@@ -16,6 +16,11 @@ public class PlayerAnimation : MonoBehaviourPun
 
     void Update()
     {
+        if (photonView.IsMine == false)
+        {
+            return;
+        }
+
         ani.SetBool("DEAD", health.current == 0);
         velocity_z = GetComponent<CharacterController>().velocity.z;
         velocity_x = GetComponent<CharacterController>().velocity.x;

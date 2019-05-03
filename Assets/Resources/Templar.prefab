@@ -2593,7 +2593,6 @@ GameObject:
   - component: {fileID: 8507589155850472304}
   - component: {fileID: 13664234}
   - component: {fileID: 13664233}
-  - component: {fileID: 9097749678067487535}
   m_Layer: 0
   m_Name: Templar
   m_TagString: Player
@@ -2920,18 +2919,6 @@ MonoBehaviour:
     LayerIndex: 0
   - SynchronizeType: 0
     LayerIndex: 1
---- !u!114 &9097749678067487535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8218607957468313087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 574e48861fd6bee4bb0a024a47d3e9bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8218607957583911063
 GameObject:
   m_ObjectHideFlags: 0

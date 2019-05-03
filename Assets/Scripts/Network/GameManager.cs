@@ -39,13 +39,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             case 0:
                 Debug.Log("Instantiating LocalPlayer: " + playerName.NickName + " at spawn point 1");
-                GameObject player1 = PhotonNetwork.Instantiate(templarPrefab.name, spawnPoint1.transform.position, spawnPoint1.transform.rotation, 0);
-                player1.GetComponent<PlayerManagerControl>().EnableComponents();
+                PhotonNetwork.Instantiate(templarPrefab.name, spawnPoint1.transform.position, spawnPoint1.transform.rotation, 0);
                 break;
             case 1:
                 Debug.Log("Instantiating LocalPlayer: " + playerName.NickName + " at spawn point 2");
-                GameObject player2 = PhotonNetwork.Instantiate(templarPrefab.name, spawnPoint2.transform.position, spawnPoint2.transform.rotation, 0);
-                player2.GetComponent<PlayerManagerControl>().EnableComponents();
+                PhotonNetwork.Instantiate(templarPrefab.name, spawnPoint2.transform.position, spawnPoint2.transform.rotation, 0);
                 break;
             default:
                 Debug.Log("Instantiation error");

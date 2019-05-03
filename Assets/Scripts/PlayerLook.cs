@@ -72,6 +72,11 @@ public class PlayerLook : MonoBehaviourPun
 
     void Start()
     {
+        if (photonView.IsMine == false)
+        {
+            camera.enabled = false;
+            return;
+        }
 
         // only for local player
         camera.transform.SetParent(transform, false);
@@ -130,7 +135,10 @@ public class PlayerLook : MonoBehaviourPun
 
     void Update()
     {
-        
+        if (photonView.IsMine == false)
+        {
+            return;
+        }
 
         // only while alive
         //if (health.current > 0) // for now
@@ -144,7 +152,10 @@ public class PlayerLook : MonoBehaviourPun
 
     void LateUpdate()
     {
-        
+        if (photonView.IsMine == false)
+        {
+            return;
+        }
 
         // we have to set the camera rotation before calculating the zoom
         // position, otherwise it won't be smooth and would overwrite each
