@@ -37,6 +37,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public Canvas lobby;
     public Button multiplayBtn;
     public Button playBtn;
+    public Button exitBtn;
+    public Button disconBtn;
     public TMP_InputField nameInput;
 
     public bool TryConnect;
@@ -94,6 +96,19 @@ public class MenuManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
         PhotonNetwork.LoadLevel(1);
+    }
+
+    //Exits game on click
+    public void OnClickExit()
+    {
+        Debug.Log("Application closing. Thanks for playing!");
+        Application.Quit();
+    }
+
+    //Disconnect from lobby on click
+    public void OnClickDisconnect()
+    {
+        PhotonNetwork.Disconnect();
     }
 
     //When disconnected from master
