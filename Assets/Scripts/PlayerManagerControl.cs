@@ -20,6 +20,7 @@ public class PlayerManagerControl : MonoBehaviourPun
             movement.enabled = true;
             animation.enabled = true;
             look.enabled = true;
+            look.camera.enabled = true;
             hotbar.enabled = true;
             health.enabled = true;
             mana.enabled = true;
@@ -30,6 +31,7 @@ public class PlayerManagerControl : MonoBehaviourPun
             movement.enabled = false;
             animation.enabled = false;
             look.enabled = false;
+            look.camera.enabled = false;
             hotbar.enabled = false;
             health.enabled = false;
             mana.enabled = false;

@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public enum State : byte { IDLE, WALKING, RUNNING, CROUCHING, JUMPING }
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     [Header("Components")]
     new Camera camera;
