@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManagerControl : MonoBehaviourPun
+public class PlayerManagerControl : MonoBehaviourPun : IPunInstantiateMagicCallback
 {
     public void EnableComponents()
     {
@@ -37,5 +37,10 @@ public class PlayerManagerControl : MonoBehaviourPun
             mana.enabled = false;
             combat.enabled = false;
         }
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        info.Sender.TagObject = this.gameObject;
     }
 }
