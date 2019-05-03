@@ -10,7 +10,7 @@ public class PlayerLook : MonoBehaviourPun
     public CapsuleCollider capsule;
 
     public Health health;
-    new Camera camera;
+    public Camera camera;
 
     [Header("Camera")]
     public float sensX = 2;
@@ -69,17 +69,15 @@ public class PlayerLook : MonoBehaviourPun
         }
     }
 
-    private void Awake()
-    {
-        camera = Camera.main;
-    }
-
     void Start()
     {
         if (camera == null && photonView.IsMine == false)
         {
             return;
         }
+
+        camera.enabled = false;
+        camera.enabled = true;
 
         // only for local player
         camera.transform.SetParent(transform, false);
