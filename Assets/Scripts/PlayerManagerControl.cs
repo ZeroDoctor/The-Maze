@@ -41,6 +41,7 @@ public class PlayerManagerControl : MonoBehaviourPun : IPunInstantiateMagicCallb
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
+        Debug.Log("Instantiated");
         info.Sender.TagObject = this.gameObject;
     }
 }
