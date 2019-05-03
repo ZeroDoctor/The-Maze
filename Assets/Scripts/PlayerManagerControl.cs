@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManagerControl : MonoBehaviourPun : IPunInstantiateMagicCallback
+public class PlayerManagerControl : MonoBehaviourPun , IPunInstantiateMagicCallback
 {
     public void EnableComponents()
     {
