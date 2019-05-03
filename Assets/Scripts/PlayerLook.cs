@@ -3,7 +3,7 @@ using Photon.Realtime;
 using System;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviourPun
+public class PlayerLook : MonoBehaviour
 {
     [Header("Components")]
     public PlayerMovement movement;
@@ -11,7 +11,7 @@ public class PlayerLook : MonoBehaviourPun
     public CapsuleCollider capsule;
 
     public Health health;
-    private Camera camera;
+    public Camera camera;
 
     [Header("Camera")]
     public float sensX = 2;
@@ -72,21 +72,8 @@ public class PlayerLook : MonoBehaviourPun
 
     void Start()
     {
-        if (photonView.IsMine == false)
-        {
-            return;
-        }
-
-        Player[] players = PhotonNetwork.PlayerList;
-        Player playerName = PhotonNetwork.LocalPlayer;
-        int index = Array.IndexOf(players, playerName);
-        index = index + 1;
-        Debug.Log(index);
-        camera = GameObject.Find("PlayerCamera" + index).GetComponent<Camera>();
-
         if (camera == null)
         {
-            Debug.Log("Null camera");
             return;
         }
 
@@ -150,10 +137,7 @@ public class PlayerLook : MonoBehaviourPun
 
     void Update()
     {
-        if (camera == null && photonView.IsMine == false)
-        {
-            return;
-        }
+        
 
         // only while alive
         //if (health.current > 0) // for now
@@ -167,10 +151,7 @@ public class PlayerLook : MonoBehaviourPun
 
     void LateUpdate()
     {
-        if (camera == null && photonView.IsMine == false)
-        {
-            return;
-        }
+        
 
         // we have to set the camera rotation before calculating the zoom
         // position, otherwise it won't be smooth and would overwrite each
