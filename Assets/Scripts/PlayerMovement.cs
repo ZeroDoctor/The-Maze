@@ -251,10 +251,6 @@ public class PlayerMovement : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
-        {
-            return;
-        }
 
         Vector2 inputDir = GetInputDirection();
         Vector3 desiredDir = GetDesiredDirection(inputDir);

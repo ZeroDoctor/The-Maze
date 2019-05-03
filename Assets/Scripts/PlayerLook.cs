@@ -3,7 +3,7 @@ using Photon.Realtime;
 using System;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviourPun
 {
     [Header("Components")]
     public PlayerMovement movement;
@@ -72,13 +72,6 @@ public class PlayerLook : MonoBehaviour
 
     void Start()
     {
-        if (camera == null)
-        {
-            return;
-        }
-
-        camera.enabled = false;
-        camera.enabled = true;
 
         // only for local player
         camera.transform.SetParent(transform, false);
