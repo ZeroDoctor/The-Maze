@@ -13,8 +13,8 @@ public class RangedProjectileWeaponItem : RangedWeaponItem
         {
             if (hotbar != null)
             {
-                Vector3 spawnPosition = hotbar.arrowMount.transform.position;
-                Quaternion spawnRotation = hotbar.arrowMount.transform.rotation;
+                Vector3 spawnPosition = hotbar.weaponMount.transform.position;
+                Quaternion spawnRotation = hotbar.weaponMount.transform.rotation;
 
                 GameObject go = Instantiate(projectile.gameObject, spawnPosition, spawnRotation);
                 Projectile proj = go.GetComponent<Projectile>();
