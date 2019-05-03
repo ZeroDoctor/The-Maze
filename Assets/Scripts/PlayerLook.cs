@@ -80,8 +80,8 @@ public class PlayerLook : MonoBehaviourPun
         Player[] players = PhotonNetwork.PlayerList;
         Player playerName = PhotonNetwork.LocalPlayer;
         int index = Array.IndexOf(players, playerName);
-        GameObject cam = GameObject.Find("PlayerCamera" + index);
-        camera = cam.GetComponent<Camera>() as Camera;
+        index = index + 1;
+        camera = GameObject.Find("PlayerCamera" + index).GetComponent<Camera>();
 
         if (camera == null)
         {
