@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class PlayerLook : MonoBehaviourPun
     public CapsuleCollider capsule;
 
     public Health health;
-    public Camera camera;
+    private Camera camera;
 
     [Header("Camera")]
     public float sensX = 2;
@@ -71,8 +72,20 @@ public class PlayerLook : MonoBehaviourPun
 
     void Start()
     {
-        if (camera == null && photonView.IsMine == false)
+        if (photonView.IsMine == false)
         {
+            return;
+        }
+
+        Player[] players = PhotonNetwork.PlayerList;
+        Player playerName = PhotonNetwork.LocalPlayer;
+        int index = Array.IndexOf(players, playerName);
+        GameObject cam = GameObject.Find("PlayerCamera" + index);
+        camera = cam.GetComponent<Camera>() as Camera;
+
+        if (camera == null)
+        {
+            Debug.Log("Null camera");
             return;
         }
 
