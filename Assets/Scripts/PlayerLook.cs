@@ -10,7 +10,7 @@ public class PlayerLook : MonoBehaviourPun
     public CapsuleCollider capsule;
 
     public Health health;
-    public Camera camera;
+    new Camera camera;
 
     [Header("Camera")]
     public float sensX = 2;
@@ -67,6 +67,11 @@ public class PlayerLook : MonoBehaviourPun
             //else
             //return Vector3.zero;
         }
+    }
+
+    private void Awake()
+    {
+        camera = Camera.main;
     }
 
     void Start()
