@@ -6,7 +6,6 @@ public abstract class RangedWeaponItem : WeaponItem
 {
     public AmmoItem requiredAmmo;
     public float zoom = 20;
-    public GameObject spawnlocation;
 
     [Header("Recoil")]
     [Range(0, 30)] public float recoilHorizontal;
@@ -19,11 +18,10 @@ public abstract class RangedWeaponItem : WeaponItem
         if (Time.time < hotbar.usageEndTime)
             return Usability.Cooldown;
 
-        // not enough ammo?
-        if (requiredAmmo != null && hotbar.slots[hotbarIndex].item.ammo == 0)
-            return Usability.Empty;
+        // maybe in the future
+        /* if (requiredAmmo != null && hotbar.slots[hotbarIndex].item.ammo == 0)
+            return Usability.Empty; */
 
-        // otherwise we can use it
         return Usability.Usable;
     }
 
