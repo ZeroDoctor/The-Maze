@@ -1,7 +1,8 @@
+using Photon.Pun;
 using System;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviourPun
 {
     [Header("Components")]
     public PlayerMovement movement;
@@ -9,7 +10,7 @@ public class PlayerLook : MonoBehaviour
     public CapsuleCollider capsule;
 
     public Health health;
-    new Camera camera;
+    public Camera camera;
 
     [Header("Camera")]
     public float sensX = 2;
@@ -68,13 +69,13 @@ public class PlayerLook : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        camera = Camera.main;
-    }
-
     void Start()
     {
+        if (camera == null && photonView.IsMine == false)
+        {
+            return;
+        }
+
         // only for local player
         camera.transform.SetParent(transform, false);
         camera.transform.rotation = Quaternion.identity;
@@ -132,6 +133,11 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
+        if (camera == null && photonView.IsMine == false)
+        {
+            return;
+        }
+
         // only while alive
         //if (health.current > 0) // for now
         //{
@@ -144,6 +150,10 @@ public class PlayerLook : MonoBehaviour
 
     void LateUpdate()
     {
+        if (camera == null && photonView.IsMine == false)
+        {
+            return;
+        }
 
         // we have to set the camera rotation before calculating the zoom
         // position, otherwise it won't be smooth and would overwrite each

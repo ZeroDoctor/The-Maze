@@ -2,10 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
 public enum State : byte { IDLE, WALKING, RUNNING, CROUCHING, JUMPING }
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     [Header("Components")]
     new Camera camera;
@@ -250,6 +251,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+
         Vector2 inputDir = GetInputDirection();
         Vector3 desiredDir = GetDesiredDirection(inputDir);
         Vector3 desiredGroundDir = GetDesiredDirectionOnGround(desiredDir);

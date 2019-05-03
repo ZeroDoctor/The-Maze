@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     [Serializable]
     public class NameFields
     {
-        [Header("--TM Pro UGUI Texts")]
+        [Header("TM Pro UGUI Texts")]
         public TextMeshProUGUI playerName0;
         public TextMeshProUGUI playerName1;
         public TextMeshProUGUI playerName2;
@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public Canvas mainMenu;
     public Canvas lobby;
     public Button multiplayBtn;
+    public Button playBtn;
     public TMP_InputField nameInput;
 
     public bool TryConnect;
@@ -44,6 +45,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         TryConnect = false;
         TryJoin = false;
     }
@@ -51,8 +53,14 @@ public class MenuManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        mainMenu.gameObject.SetActive(!PhotonNetwork.IsConnected && !TryConnect);
-        lobby.gameObject.SetActive(PhotonNetwork.IsConnected && !TryConnect && !TryJoin);
+        if (mainMenu != null)
+        {
+            mainMenu.gameObject.SetActive(!PhotonNetwork.IsConnected && !TryConnect);
+        }
+        if (lobby != null)
+        {
+            lobby.gameObject.SetActive(PhotonNetwork.IsConnected && !TryConnect && !TryJoin);
+        }       
     }
 
     //When multiplaye is clicked, get nickname and connect to master
@@ -73,6 +81,19 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
         TryConnect = true;
         PhotonNetwork.ConnectUsingSettings();
+    }
+
+    //On click, start game
+    public void OnClickPlay()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.CurrentRoom.IsVisible = false;
+        PhotonNetwork.LoadLevel(1);
     }
 
     //When disconnected from master

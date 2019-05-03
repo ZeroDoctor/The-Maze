@@ -1,6 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+public class PlayerAnimation : MonoBehaviourPun
 {
     public Animator ani;
     public Health health;
@@ -15,6 +16,11 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+
         ani.SetBool("DEAD", health.current == 0);
         velocity_z = GetComponent<CharacterController>().velocity.z;
         velocity_x = GetComponent<CharacterController>().velocity.x;
@@ -34,6 +40,5 @@ public class PlayerAnimation : MonoBehaviour
         ani.SetBool("CROUCHING", movement.state == State.CROUCHING);
         ani.SetBool("JUMPING", movement.state == State.JUMPING && !controller.isGrounded);
         ani.SetBool("IDLE", movement.state == State.IDLE);
-
     }
 }
