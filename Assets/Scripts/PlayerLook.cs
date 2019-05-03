@@ -3,7 +3,7 @@ using Photon.Realtime;
 using System;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviourPun
+public class PlayerLook : MonoBehaviour
 {
     [Header("Components")]
     public PlayerMovement movement;

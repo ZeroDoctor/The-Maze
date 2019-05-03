@@ -1,7 +1,7 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviourPun
+public class PlayerAnimation : MonoBehaviour
 {
     public Animator ani;
     public Health health;
