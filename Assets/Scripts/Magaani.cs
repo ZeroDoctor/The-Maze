@@ -130,8 +130,6 @@ public class Magaani : Mob
         agent.stoppingDistance = stoppingDistance;
         agent.destination = goalDestination;
 
-        Debug.Log(goalDestination);
-
         return "MOVING";
     }
 

@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
         //transform.Rotate(90f, 0f, 0f);
         rigidBody.MovePosition(Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.fixedDeltaTime));
         Vector3 localDirection = transform.position + direction;
-        transform.LookAt(new Vector3(transform.position.x, localDirection.y, localDirection.z));
+        transform.LookAt(localDirection, Vector3.up);
     }
 
     void OnTriggerEnter(Collider co)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Linq;
 
@@ -29,6 +30,8 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
 
     public MeleeWeaponItem hands;
     public Transform weaponMount;
+
+    public Slider healthUI;
 
     void Start()
     {
@@ -137,7 +140,6 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
         // Animation can be done here since we have the animator
         if (itemData is WeaponItem)
         {
-            Debug.Log("Should be true");
             WeaponItem weapon = (WeaponItem)itemData;
             animator.SetBool(weapon.animationParameter, true);
         }
