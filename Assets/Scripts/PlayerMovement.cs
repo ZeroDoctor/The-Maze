@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviourPun
     public float crouchSpeed = 1.5f;
     public KeyCode crouchKey = KeyCode.C;
 
+    [Header("Pause")]
+    public KeyCode pauseKey = KeyCode.Escape;
+
     [Header("Jumping")]
     public float jumpSpeed = 7;
 
