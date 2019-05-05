@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviourPun
     public Health health;
     public CharacterController controller;
     public GameObject playerUI;
+    public GameObject pauseUI;
 
 
     [Header("State")]
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviourPun
         GameObject ui = Instantiate(playerUI) as GameObject;
         TextMeshProUGUI name = ui.GetComponentInChildren<TextMeshProUGUI>();
         name.text = photonView.Owner.NickName;
+        //GameObject pauseMenu = Instantiate(pauseUI) as GameObject; <-- need to create pause menu
     }
 
     public bool isMoving()
