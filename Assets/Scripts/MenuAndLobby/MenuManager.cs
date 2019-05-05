@@ -145,15 +145,16 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         base.OnJoinRandomFailed(returnCode, message);
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 16 });
-        Debug.Log("Join room failed, creating room.");
+        Debug.Log("Join failed: " + message);
+        Debug.Log("Attempting to create room.");
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 16 });        
     }
 
     //If room created failed, major error occurs that can be handled
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
-        Debug.Log(message);
+        Debug.Log("Create failed: " + message);
         TryJoin = false;
     }
 
@@ -238,6 +239,15 @@ public class MenuManager : MonoBehaviourPunCallbacks
             default:
                 Debug.Log("Too full");
                 break;
+        }
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        foreach (RoomInfo i in roomList)
+        {
+            Debug.Log("Available room: " + i.Name);
         }
     }
 
