@@ -2670,6 +2670,7 @@ MonoBehaviour:
   runKey: 304
   crouchSpeed: 1.5
   crouchKey: 99
+  pauseKey: 27
   jumpSpeed: 7
   gravityMultiplier: 2
   soundCreated: 0
@@ -2978,6 +2979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8218607957583911062}
     m_Modifications:
+    - target: {fileID: 100000, guid: 6ecaa99d366888d49aa0c35ce3cbd49c, type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ecaa99d366888d49aa0c35ce3cbd49c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3033,10 +3038,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 6ecaa99d366888d49aa0c35ce3cbd49c, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.20000009
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6ecaa99d366888d49aa0c35ce3cbd49c, type: 3}
-      propertyPath: m_Name
-      value: Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ecaa99d366888d49aa0c35ce3cbd49c, type: 3}
