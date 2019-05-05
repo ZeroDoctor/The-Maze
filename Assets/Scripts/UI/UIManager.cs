@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        this.GetComponent<Transform>().SetParent(GameObject.Find("Canvas").GetComponent<Transform>()); 
+        this.GetComponent<Transform>().SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false); 
     }
 
     // Update is called once per frame
