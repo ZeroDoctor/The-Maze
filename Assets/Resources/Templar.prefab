@@ -2663,6 +2663,8 @@ MonoBehaviour:
   capsule: {fileID: 8218607957468313085}
   health: {fileID: 8218607957468313078}
   controller: {fileID: 8218607957468313086}
+  playerUI: {fileID: 5169595281136857380, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+    type: 3}
   state: 0
   moveDir: {x: 0, y: 0, z: 0}
   walkSpeed: 3

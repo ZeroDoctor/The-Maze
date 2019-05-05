@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using TMPro;
 
 public enum State : byte { IDLE, WALKING, RUNNING, CROUCHING, JUMPING }
 
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviourPun
     //public Animator animator;
     public Health health;
     public CharacterController controller;
+    public GameObject playerUI;
 
 
     [Header("State")]
@@ -52,6 +54,9 @@ public class PlayerMovement : MonoBehaviourPun
     void Start()
     {
         health.current = 100;
+        GameObject ui = Instantiate(playerUI) as GameObject;
+        TextMeshProUGUI name = ui.GetComponentInChildren<TextMeshProUGUI>();
+        name.text = photonView.Owner.NickName;
     }
 
     public bool isMoving()
