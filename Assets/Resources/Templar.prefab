@@ -2767,6 +2767,7 @@ MonoBehaviour:
   usageEndTime: 0
   hands: {fileID: 11400000, guid: e58310a511d67b04c83efffd9714f047, type: 2}
   weaponMount: {fileID: 8218607957028358830}
+  healthUI: {fileID: 0}
 --- !u!114 &8218607957468313078
 MonoBehaviour:
   m_ObjectHideFlags: 0

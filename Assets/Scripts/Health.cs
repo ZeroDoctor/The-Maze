@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using Photon.Pun;
 
 public interface IHealthBonus
 {
@@ -7,7 +8,7 @@ public interface IHealthBonus
     int GetHealthRecoveryBonus();
 }
 
-public class Health : Energy
+public class Health : Energy , IPunObservable
 {
     public int baseHealth = 100;
 
@@ -36,5 +37,17 @@ public class Health : Energy
     public override void OnEmpty()
     {
         // SendMessage of Death
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(current);
+        }
+        else
+        {
+            current = (int)stream.ReceiveNext();
+        }
     }
 }
