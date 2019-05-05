@@ -242,15 +242,6 @@ public class MenuManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        base.OnRoomListUpdate(roomList);
-        foreach (RoomInfo i in roomList)
-        {
-            Debug.Log("Available room: " + i.Name);
-        }
-    }
-
     //Resets ui player names
     public void ResetNames()
     {
