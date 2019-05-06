@@ -24,16 +24,18 @@ public class PlayerPause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pause) && pauseMenu.active == false)
+        if (Input.GetKeyDown(pause) && !pauseMenu.activeSelf)
         {
-            Debug.Log("Pause going active");
-            pauseMenu.SetActive(true);
-        }
-        
-        if (Input.GetKeyDown(pause) && pauseMenu.active == true)
-        {
-            Debug.Log("Pause window open, closing");
-            pauseMenu.SetActive(false);
+            if (pauseMenu.activeInHierarchy == true)
+            {
+                Debug.Log("Closing pause menu");
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Opening pause menu");
+                pauseMenu.SetActive(true);
+            }
         }
     }
 
