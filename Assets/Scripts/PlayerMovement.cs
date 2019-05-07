@@ -16,7 +16,9 @@ public class PlayerMovement : MonoBehaviourPun
     public Health health;
     public CharacterController controller;
     public TextMeshProUGUI username;
-
+    public TextMeshProUGUI pauseTitle;
+    public GameObject pauseMenu;
+    public GameObject resumeBtn;
 
     [Header("State")]
     public State state = State.IDLE;
@@ -261,6 +263,17 @@ public class PlayerMovement : MonoBehaviourPun
         return State.RUNNING;
     }
 
+    //On death
+    private void Death()
+    {
+        controller.enabled = false;
+        PlayerPause pause = GetComponent<PlayerPause>();
+        pause.isDead = true;
+        pauseTitle.text = "YOU DIED";
+        resumeBtn.SetActive(false);
+        pauseMenu.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -276,6 +289,10 @@ public class PlayerMovement : MonoBehaviourPun
         if (health.current < 0)
         {
             UpdateFreeFlying(inputDir, desiredDir);
+        }
+        else if (health.current == 0)
+        {
+            Death();
         }
         else
         {

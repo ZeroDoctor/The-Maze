@@ -20,6 +20,9 @@ public class PlayerPause : MonoBehaviourPun
     [Header("Controller")]
     public CharacterController control;
 
+    [Header("Is Dead")]
+    public bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,7 @@ public class PlayerPause : MonoBehaviourPun
     {
         if (Input.GetKeyDown(pause))
         {
-            if (pauseMenu.activeInHierarchy == true)
+            if (pauseMenu.activeInHierarchy == true && !isDead)
             {
                 Debug.Log("Closing pause menu");
                 control.enabled = true;
