@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24705882, g: 0.23921569, b: 0.23921569, a: 0.392}
+  m_Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24528301, g: 0.23949803, b: 0.23949803, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3788,7 +3788,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8507589155850472304}
   - {fileID: 13664233}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &8507589155850472304
@@ -3935,6 +3935,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 5169595280969427712, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 1093166862761315779}
     - target: {fileID: 5169595281136857381, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4065,11 +4070,6 @@ PrefabInstance:
       propertyPath: content
       value: 
       objectReference: {fileID: 7387971976731193994}
-    - target: {fileID: 5169595280969427712, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 1093166862761315779}
     - target: {fileID: 974772672874679564, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: image
@@ -4185,51 +4185,16 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6429613198034706574}
-    - target: {fileID: 1274292056330569293, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 6429613198034706574}
-    - target: {fileID: 1274292056330569293, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_subTextObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 8028905101540253708}
     - target: {fileID: 8814743117973895742, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6429613197700432704}
-    - target: {fileID: 1274292056397915523, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 6429613197700432704}
-    - target: {fileID: 1274292056397915523, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_subTextObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 8028905102011810754}
     - target: {fileID: 8814743117126271428, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 6429613196887177402}
-    - target: {fileID: 8387868198921758032, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 4391593835288642451}
-    - target: {fileID: 1274292057278881401, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 6429613196887177402}
-    - target: {fileID: 1274292057278881401, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_subTextObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 8028905102791866424}
     - target: {fileID: 8814743116858259840, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -4240,6 +4205,11 @@ PrefabInstance:
       propertyPath: m_textInfo.textComponent
       value: 
       objectReference: {fileID: 4391593835020073943}
+    - target: {fileID: 8387868198921758032, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 4391593835288642451}
     - target: {fileID: 1274292057547204157, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_textInfo.textComponent
@@ -4250,6 +4220,36 @@ PrefabInstance:
       propertyPath: m_subTextObjects.Array.data[1]
       value: 
       objectReference: {fileID: 8028905103060402300}
+    - target: {fileID: 1274292057278881401, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 6429613196887177402}
+    - target: {fileID: 1274292057278881401, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_subTextObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8028905102791866424}
+    - target: {fileID: 1274292056397915523, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 6429613197700432704}
+    - target: {fileID: 1274292056397915523, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_subTextObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8028905102011810754}
+    - target: {fileID: 1274292056330569293, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 6429613198034706574}
+    - target: {fileID: 1274292056330569293, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_subTextObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 8028905101540253708}
     - target: {fileID: 3319992549943591710, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_textInfo.textComponent
@@ -4320,7 +4320,8 @@ PrefabInstance:
       propertyPath: m_TextComponent
       value: 
       objectReference: {fileID: 6429613196618350846}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3494777594389814451, guid: b4ab7c19a4de5fb49a7f89070872d7b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4ab7c19a4de5fb49a7f89070872d7b9, type: 3}
 --- !u!114 &8028905103060402300 stripped
 MonoBehaviour:
