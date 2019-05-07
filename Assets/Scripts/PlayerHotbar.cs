@@ -218,6 +218,11 @@ public class PlayerHotbar : MonoBehaviour, ICombatBonus
             // use current item or hands
             TryUseItem(GetUsableItemOrHands(selection));
         }
+        else if (health.current <= 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            GetComponent<CapsuleCollider>().enabled = false;
+        }
         ResetAnimation(GetUsableItemOrHands(selection), look.lookPositionRaycasted);
     }
 

@@ -3932,11 +3932,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 377700890}
     m_Modifications:
-    - target: {fileID: 5169595281136857380, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerPanel
-      objectReference: {fileID: 0}
     - target: {fileID: 5169595280969427712, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_textInfo.textComponent
@@ -4046,6 +4041,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814743118042339824, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 6429613198034706574}
+    - target: {fileID: 8814743117973895742, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 6429613197700432704}
+    - target: {fileID: 8814743117126271428, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 6429613196887177402}
+    - target: {fileID: 8814743116858259840, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 6429613196618350846}
+    - target: {fileID: 8387868199189781780, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 4391593835020073943}
+    - target: {fileID: 8387868198921758032, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 4391593835288642451}
+    - target: {fileID: 5169595281136857380, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerPanel
       objectReference: {fileID: 0}
     - target: {fileID: 5169595281136857378, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
@@ -4182,36 +4212,6 @@ PrefabInstance:
       propertyPath: selectionOutline
       value: 
       objectReference: {fileID: 7847226197238258268}
-    - target: {fileID: 8814743118042339824, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 6429613198034706574}
-    - target: {fileID: 8814743117973895742, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 6429613197700432704}
-    - target: {fileID: 8814743117126271428, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 6429613196887177402}
-    - target: {fileID: 8814743116858259840, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 6429613196618350846}
-    - target: {fileID: 8387868199189781780, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 4391593835020073943}
-    - target: {fileID: 8387868198921758032, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
-        type: 3}
-      propertyPath: m_textInfo.textComponent
-      value: 
-      objectReference: {fileID: 4391593835288642451}
     - target: {fileID: 1274292057547204157, guid: b4ab7c19a4de5fb49a7f89070872d7b9,
         type: 3}
       propertyPath: m_textInfo.textComponent
