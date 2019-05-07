@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             myCheck = 0;
             randPos = new Vector3(UnityRandom.Range(50f, 400f), 6f, UnityRandom.Range(50f, 400f));
-            Collider[] hitColliders = Physics.OverlapSphere(randPos, 5f);
+            Collider[] hitColliders = Physics.OverlapSphere(randPos, 7f);
             for (int j = 0; j < hitColliders.Length; j++)
             {
-                if (hitColliders[j].tag == "Outside")
+                if (hitColliders[j].name == "Terrain")
                 {
                     myCheck++;
                 }
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
             // verify that position is above terrain
             RaycastHit hit;
-            if (Physics.Raycast(randPos, Vector3.up, out hit))
+            if (Physics.Raycast(randPos, Vector3.up, out hit, 250))
             {
                 float distanceToGround = hit.distance;
                 if (hit.transform.name == "Terrain")
