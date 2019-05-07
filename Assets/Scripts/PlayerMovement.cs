@@ -225,7 +225,7 @@ public class PlayerMovement : MonoBehaviourPun
     {
         float horizontal = 0;
         float vertical = 0;
-        if (health.current > 0 && !Utils.AnyInputActive())
+        if (!Utils.AnyInputActive())
         {
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
@@ -251,6 +251,16 @@ public class PlayerMovement : MonoBehaviourPun
         return desiredDir;
     }
 
+    private State UpdateFreeFlying(Vector2 inputDir, Vector3 desiredDir)
+    {
+        float speed = 10; // hard value for now
+
+        moveDir.x = desiredDir.x * speed;
+        moveDir.z = desiredDir.z * speed;
+
+        return State.RUNNING;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -263,11 +273,18 @@ public class PlayerMovement : MonoBehaviourPun
         Vector3 desiredDir = GetDesiredDirection(inputDir);
         Vector3 desiredGroundDir = GetDesiredDirectionOnGround(desiredDir);
 
-        if (state == State.IDLE) state = UpdateIDLE(inputDir, desiredGroundDir);
-        else if (state == State.WALKING) state = UpdateWALKINGandRUNNING(inputDir, desiredGroundDir);
-        else if (state == State.RUNNING) state = UpdateWALKINGandRUNNING(inputDir, desiredGroundDir);
-        else if (state == State.CROUCHING) state = UpdateCROUCHING(inputDir, desiredGroundDir);
-        else if (state == State.JUMPING) state = UpdateJUMPING(inputDir, desiredGroundDir);
+        if (health.current < 0)
+        {
+            UpdateFreeFlying(inputDir, desiredDir);
+        }
+        else
+        {
+            if (state == State.IDLE) state = UpdateIDLE(inputDir, desiredGroundDir);
+            else if (state == State.WALKING) state = UpdateWALKINGandRUNNING(inputDir, desiredGroundDir);
+            else if (state == State.RUNNING) state = UpdateWALKINGandRUNNING(inputDir, desiredGroundDir);
+            else if (state == State.CROUCHING) state = UpdateCROUCHING(inputDir, desiredGroundDir);
+            else if (state == State.JUMPING) state = UpdateJUMPING(inputDir, desiredGroundDir);
+        }
 
         previouslyGrounded = controller.isGrounded;
         if (!controller.isGrounded) lastFall = controller.velocity;
