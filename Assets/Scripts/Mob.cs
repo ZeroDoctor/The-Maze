@@ -176,10 +176,18 @@ public abstract class Mob : FSM
 
     protected override string UpdateServer()
     {
-        if (state == "IDLE") return UpdateServer_Idle();
-        if (state == "MOVING") return UpdateServer_Moving();
-        if (state == "INTERACTING") return UpdateServer_Interacting();
-        if (state == "DEAD") return UpdateServer_Dead();
+        if (health.current <= 0)
+        {
+            target = null;
+            return UpdateServer_Dead();
+        }
+        else
+        {
+            if (state == "IDLE") return UpdateServer_Idle();
+            if (state == "MOVING") return UpdateServer_Moving();
+            if (state == "INTERACTING") return UpdateServer_Interacting();
+        }
+
         // if somehow we are in a different state not mention above then:
         return "IDLE";
     }
