@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 568786803014590750}
   - component: {fileID: 1740928437056666185}
   - component: {fileID: 3170955303051947523}
+  - component: {fileID: 1282886548575084028}
   m_Layer: 0
   m_Name: Mag-aani
   m_TagString: Untagged
@@ -109,18 +110,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 568786803014590750}
   _state: IDLE
-  collider: {fileID: 7304254857735119559}
+  collider: {fileID: 1282886548575084028}
   combat: {fileID: 1740928437056666185}
   walkSpeed: 1
-  runSpeed: 5
+  runSpeed: 3
   moveProbability: 0.1
-  specialProbability: 0.1
-  attackProbability: 0.1
+  specialProbability: 0.149
+  attackProbability: 0.5
   moveDistance: 10
-  followDistance: 3
+  followDistance: 35
   attackToMoveRangeRatio: 0.5
-  interactRange: 2
-  attackInterval: 0.5
+  interactRange: 15
+  specialInterval: 1
+  attackInterval: 1
   action: NOTHING
   agent: {fileID: 3170955303051947523}
 --- !u!114 &4187135408785677301
@@ -137,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3170955303051947523}
   fsm: {fileID: 3258632272073982108}
+  anim: {fileID: 7247819075386143573}
 --- !u!114 &568786803014590750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,9 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0e728393e509a4ba3229c557033fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 100
+  baseDamage: 5
   baseDefense: 0
   onDamageEffect: {fileID: 0}
+  onReceivedDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEventGameObjectInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!195 &3170955303051947523
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -174,8 +182,8 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7247819074365800867}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_AgentTypeID: 0
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -188,6 +196,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!64 &1282886548575084028
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247819074365800867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 0}
 --- !u!64 &7304254857735119559
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -197,7 +219,7 @@ MeshCollider:
   m_GameObject: {fileID: 7247819075376742643}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -257,6 +279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: cc0fa8b3c534dc545860ab543a264f6f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: afaf097b43021ff40b47681a625a7e27, type: 2}
     - target: {fileID: 13700004, guid: cc0fa8b3c534dc545860ab543a264f6f, type: 3}
       propertyPath: m_Bones.Array.data[0]
       value: 
@@ -1171,6 +1197,12 @@ PrefabInstance:
       objectReference: {fileID: 7247819075377044663}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0fa8b3c534dc545860ab543a264f6f, type: 3}
+--- !u!4 &7247819075377044641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400020, guid: cc0fa8b3c534dc545860ab543a264f6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7247819075376645685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7247819075377044629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400032, guid: cc0fa8b3c534dc545860ab543a264f6f,
@@ -1369,6 +1401,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7247819075376645685}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &7247819075386143573 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: cc0fa8b3c534dc545860ab543a264f6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7247819075376645685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7247819075377044663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: cc0fa8b3c534dc545860ab543a264f6f,
@@ -1390,12 +1428,6 @@ Transform:
 --- !u!4 &7247819075377044649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: cc0fa8b3c534dc545860ab543a264f6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7247819075376645685}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7247819075377044641 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400020, guid: cc0fa8b3c534dc545860ab543a264f6f,
     type: 3}
   m_PrefabInstance: {fileID: 7247819075376645685}
   m_PrefabAsset: {fileID: 0}
