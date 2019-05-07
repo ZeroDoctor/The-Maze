@@ -15,6 +15,9 @@ public class PlayerPause : MonoBehaviour
     [Header("Pause Key")]
     public KeyCode pause = KeyCode.Escape;
 
+    [Header("Controller")]
+    public CharacterController control;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +32,13 @@ public class PlayerPause : MonoBehaviour
             if (pauseMenu.activeInHierarchy == true)
             {
                 Debug.Log("Closing pause menu");
+                control.enabled = true;
                 pauseMenu.SetActive(false);
             }
             else
             {
                 Debug.Log("Opening pause menu");
+                control.enabled = false;
                 pauseMenu.SetActive(true);
             }
         }
