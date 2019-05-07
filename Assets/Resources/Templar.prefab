@@ -3872,6 +3872,7 @@ MonoBehaviour:
   exit: {fileID: 326916633}
   resume: {fileID: 579698518}
   pause: 27
+  control: {fileID: 8218607957468313086}
 --- !u!1 &8218607957583911063
 GameObject:
   m_ObjectHideFlags: 0
