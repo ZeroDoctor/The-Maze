@@ -5,6 +5,13 @@ public class CursorLocking : MonoBehaviour
 {
 
     public GameObject[] windowsThatUnlockCursor;
+    public GameObject pauseMenuUI;
+
+    private void Start()
+    {
+        windowsThatUnlockCursor = new GameObject[1];
+        windowsThatUnlockCursor[0] = pauseMenuUI;
+    }
 
     void Update()
     {
