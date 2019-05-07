@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerPause : MonoBehaviour
+public class PlayerPause : MonoBehaviourPun
 {
     [Header("Pause Menu")]
     public GameObject pauseMenu;
@@ -48,11 +50,15 @@ public class PlayerPause : MonoBehaviour
     public void OnExitClick()
     {
         Debug.Log("Exit Clicked");
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("MainMenu");
     }
 
     //On resume button click, close menu, lock cursor, and make cursor invisible
     public void OnResumeClick()
     {
         Debug.Log("Resume Clicked");
+        control.enabled = true;
+        pauseMenu.SetActive(false);
     }
 }
