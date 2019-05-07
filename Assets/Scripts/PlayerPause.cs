@@ -24,7 +24,7 @@ public class PlayerPause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(pause) && !pauseMenu.activeSelf)
+        if (Input.GetKeyDown(pause))
         {
             if (pauseMenu.activeInHierarchy == true)
             {
